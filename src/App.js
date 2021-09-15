@@ -1,23 +1,46 @@
-import logo from './logo.svg';
 import './App.css';
+import Navbar from './components/Navbar'
+import { Route } from 'react-router-dom'
+import TeamsList from './components/TeamsList'
+import TeamDetails from './components/TeamDetails'
+import NewTeam from './components/NewTeam'
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
+console.log(process.env.REACT_APP_AIRTABLE_KEY)
+console.log(process.env.REACT_APP_AIRTABLE_BASE)
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      {/* Navbar */}
+      <Navbar />
+
+      {/* Routes */}
+      <Route exact path='/'>
+        <div>Home</div>
+      </Route>
+
+      {/* Routes */}
+      <Route exact path='/teams'>
+        <TeamsList />
+      </Route>
+
+      {/* Routes */}
+      <Route exact path='/teams/:id'>
+        <div><TeamDetails /></div>
+      </Route>
+
+      {/* Routes */}
+      <Route path='/new'>
+        <div><NewTeam /></div>
+      </Route>
+
+      {/* Routes */}
+      <Route path='/teams/:id/edit'>
+        <div>Edit</div>
+      </Route>
+      <ToastContainer />
     </div>
   );
 }
